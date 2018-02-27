@@ -134,10 +134,6 @@
             return;
           }
 
-          if (!self.dataTable.column(index).visible()){
-            return;
-          }
-
           columnOptions = index in options ? options[index] : {};
           column = new Column(
             self.dataTable,
@@ -146,6 +142,11 @@
             columnOptions
           );
           th = $('<th>').appendTo(tr);
+
+          if (!self.dataTable.column(index).visible()){
+            $('th', tr).eq(index).hide();
+          }
+
           self.columns.push(column);
 
           column.dom(th);
